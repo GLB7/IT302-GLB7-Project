@@ -1,3 +1,8 @@
+// Giovani Bergamasco
+// 10/6/2024
+// IT 302 451
+// Phase 2 Read MongoDB Data using Node.js
+// glb7@njit.edu
 import app from './server.js'
 import mongodb from "mongodb"
 import dotenv from "dotenv"
