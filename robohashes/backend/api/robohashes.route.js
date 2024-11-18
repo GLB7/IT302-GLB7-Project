@@ -10,7 +10,8 @@ import CommentsController from './comments.controller.js'
 
 const router = express.Router()
 
-router.route('/').get(RobohashesController.apiGetRobohashes) 
+router.route('/').get(RobohashesController.apiGetRobohashes)
+router.route("/id/:id").get(RobohashesController.apiGetRobohashById)
 
 router
   .route("/comment")

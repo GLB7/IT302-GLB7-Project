@@ -50,4 +50,30 @@ export default class RobohashesDAO {
             return { robohashesList: [], totalNumRobohashes: 0 }
         }
     }
+
+    static async getRobohashById(id) {
+        try {
+            return await robohashes.aggregate([
+                {
+                    $match: {
+                        _id: ObjectId.createFromHexString(id),
+                    }
+                },
+                {
+                    $lookup:
+                    {
+                        from: 'comments',
+                        localField: '_id',
+                        foreignField: 'robohash_id',
+                        as: 'comments'
+                    }
+                }
+            ]).next()
+        }
+
+        catch (e) {
+            console.error(`something went wrong in getRobohashById: ${e}`)
+            throw e
+        }
+    }
 }

@@ -7,7 +7,7 @@ import RobohashesDAO from '../dao/robohashesDAO.js'
 
 export default class RobohashesController {
     static async apiGetRobohashes(req, res, next) {
-        const robohashesPerPage = req.query.robohashesPerPage ? parseInt(req.query.robohashesPerPage) : 5 // 1.itemsPerPage
+        const robohashesPerPage = req.query.robohashesPerPage ? parseInt(req.query.robohashesPerPage) : 20 // 1.itemsPerPage
         const page = req.query.page ? parseInt(req.query.page) : 0 // 2.pageNumber
 
         let filters = {}
@@ -40,5 +40,19 @@ export default class RobohashesController {
         }
 
         res.json(response)
+    }
+    static async apiGetRobohashById(req, res, next) {
+        try {
+            let id = req.params.id || {}
+            let robohash = await RobohashesDAO.getRobohashById(id)
+            if (!robohash) {
+                res.status(404).json({ error: "not found" })
+                return
+            }
+            res.json(robohash)
+        } catch (e) {
+            console.log(`api, ${e}`)
+            res.status(500).json({ error: e })
+        }
     }
 }
