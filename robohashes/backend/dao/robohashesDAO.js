@@ -62,7 +62,7 @@ export default class RobohashesDAO {
                 {
                     $lookup:
                     {
-                        from: 'comments',
+                        from: 'comments_glb7',
                         localField: '_id',
                         foreignField: 'robohash_id',
                         as: 'comments'

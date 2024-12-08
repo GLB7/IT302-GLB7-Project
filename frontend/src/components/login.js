@@ -14,6 +14,7 @@ function Login({ loginSetter }) {
   useEffect(() => {
     loginSetter(user);
   }, [loginSetter, user]);
+  
   const onChangeName = e => {
     const name = e.target.value
     setName(name);

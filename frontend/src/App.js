@@ -1,7 +1,7 @@
 // Giovani Bergamasco
-// 11/17/2024
+// 12/8/2024
 // IT 302 451
-// Phase 4 Read Node.js Data using React.js
+// Phase 5 CUD Node.js Data using React.js
 // glb7@njit.edu
 import React, { useState, useCallback } from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
@@ -12,6 +12,7 @@ import Navbar from "react-bootstrap/Navbar";
 import RobohashesList from "./components/robohashesList";
 import Robohash from "./components/robohash";
 import Login from "./components/login";
+import AddComment from "./components/addComment";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,6 +25,10 @@ function App() {
 
   const logout = () => {
     setUser(null);
+  };
+
+  const PrivateRoute = ({ user, children }) => { // I personally added this to avoid non logged in users to access the AddComment page by changing the URL
+    return user ? children : <Navigate to="/login" />;
   };
 
   return (
@@ -52,6 +57,13 @@ function App() {
 
         {/* Route to display a single Robohash */}
         <Route path="/robohashes/:id" element={<Robohash user={user} />} />
+
+        {/* Route to create comment */}
+        <Route path="/robohashes/:id/comment" element={
+          <PrivateRoute user={user}>
+            <AddComment user={user} />
+          </PrivateRoute>
+        } />
 
         {/* Login Page */}
         <Route path="/login" element={<Login user={user} loginSetter={loginSetter} />} />

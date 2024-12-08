@@ -1,7 +1,7 @@
 // Giovani Bergamasco
-// 11/17/2024
+// 12/8/2024
 // IT 302 451
-// Phase 4 Read Node.js Data using React.js
+// Phase 5 CUD Node.js Data using React.js
 // glb7@njit.edu
 import axios from "axios";
 
@@ -21,25 +21,23 @@ class RobohashDataService {
     find(query, by = "title", page = 0) {
         return axios.get(
             `${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes?${by}=${query}&page=${page}`
-        )
+        );
     }
-
-    // Done in phase 5
-    // createComment(data) {
-    //     return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes/comment`, data)
-    // }
-    // updateComment(data) {
-    //     return axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes/comment`, data)
-    // }
-    // deleteComment(id, userId) {
-    //     return axios.delete(
-    //         `${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes/comment`,
-    //         { data: { comment_id: id, user_id: userId } }
-    //     )
-    // }
-
+    createComment(data) {
+        return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes/comment`, data);
+    }
+    updateComment(data) {
+        return axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes/comment`, data);
+    }
+    deleteComment(id, userId) {
+        return axios.delete(
+            `${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes/comment`,
+            { data: { comment_id: id, user_id: userId } }
+        );
+    }
     getComments() {
-        return axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes/comments`)
+        return axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/GLB7/robohashes/comments`);
     }
 }
-export default new RobohashDataService();
+const robohashDataService = new RobohashDataService();
+export default robohashDataService;

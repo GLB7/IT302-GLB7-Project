@@ -18,14 +18,14 @@ export default class CommentsDAO {
         }
     }
     // create function
-    static async addComment(commentId, user, comment, date){
+    static async addComment(robohashId, user, comment, date){
         try{
             const commentDoc = {
                 name: user.name,
                 user_id: user._id,
                 date: date,
                 comment: comment,
-                comment_id: ObjectId.createFromHexString(commentId)
+                robohash_id: ObjectId.createFromHexString(robohashId)
             }
             return await comments.insertOne(commentDoc)
         }catch(e){
