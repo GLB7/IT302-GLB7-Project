@@ -1,1 +1,1 @@
-This is a semester long website project that uses the mern stack that is MongoDB, Express.JS, React, and Node.JS.
+This is a semester long website project that uses the mern stack that is MongoDB, Express.JS, React, and Node.JS. The website is uses a robohash api to display objects stored in a mongodb database. All objects can have crud operation done on them by users that are also saved in a mongoDB collection. 
